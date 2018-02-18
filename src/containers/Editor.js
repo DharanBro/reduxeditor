@@ -7,7 +7,6 @@ import * as actions from '../actions';
 
 const Editor = ({ application, changeApplicationName }) => (
     <div className="editor">
-        <button onClick={() => changeApplicationName(application.id, Date.now())}>Change the Application Name</button>
         <nav>
             <Toolbar application={application.id} />
         </nav>

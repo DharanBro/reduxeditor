@@ -10,7 +10,7 @@ const visibleIds = (state = getVisibleApps(initialState), action) => {
         case 'CREATE_NEW_APP':
             return [...state, action.id]
         case 'DELETE_APP':
-            let index = state.indexOf(action.id)
+            let index = state.indexOf(`${action.id}`) // Hacky to convert as a string
             return [
                 ...state.slice(0, index),
                 ...state.slice(index+ 1)

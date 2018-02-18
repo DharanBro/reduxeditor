@@ -3,23 +3,28 @@ import { connect } from 'react-redux'
 import * as actions from '../actions';
 import PreviewContainer from './PreviewContainer'
 import {bindActionCreators} from 'redux'
+import TabItem from '../components/TabItem'
 import Editor from './Editor'
 
 
-const App = ({ applicationIds, createNewApplication, applications, toggleApplicationState, deleteApplication }) => (
+const App = ({ applicationIds, createNewApplication, applications, toggleApplicationState, deleteApplication,changeApplicationName }) => (
     <div className="editor-container">
         <div className="header">
             <h2>VDT Cloud</h2>
-            <button onClick={() => createNewApplication()}>Create a New VDT application</button>
+           
         </div>
         <div className="app-menu">
             <div className="tabs">
                 {applicationIds.map(applicationId => (
-                    <div key={applicationId} className={applications[applicationId].isActive ? 'tab-item active' : 'tab-item'}>
-                        <span onClick={() => toggleApplicationState(applicationId)}>{applications[applicationId].name}</span>
-                        <button onClick={() => deleteApplication(applicationId)}>X</button>
-                    </div>
+                    <TabItem key={applicationId} application={applications[applicationId]} 
+                    deleteApplication={deleteApplication} toggleApplicationState={toggleApplicationState}
+                    changeApplicationName={changeApplicationName}
+
+                    />
                 ))}
+                <div>
+                 <button onClick={() => createNewApplication()}>+</button>
+                </div>
             </div>
         </div>
         <div className="editor">
