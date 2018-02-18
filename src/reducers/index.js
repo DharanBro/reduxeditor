@@ -39,10 +39,14 @@ const byIds = (state = initialState, action) => {
             }
             return state;
         case 'TOGGLE_APP_STATE':
+            let updatedState = Object.assign({},state);
+            Object.keys(updatedState).forEach(key=>{
+                updatedState[key].isActive = false
+            });
             if (id) {
                 return {
-                    ...state,
-                    [id]: { ...state[id], isActive: !state[id].isActive }
+                    ...updatedState,
+                    [id]: { ...updatedState[id], isActive: true }
                 }
             }
             return state;
