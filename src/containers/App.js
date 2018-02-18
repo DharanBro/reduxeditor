@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createNewApplication, toggleApplicationState, deleteApplication } from '../actions'
+import * as actions from '../actions';
 import PreviewContainer from './PreviewContainer'
+import {bindActionCreators} from 'redux'
 import Editor from './Editor'
 
 
@@ -14,8 +15,8 @@ const App = ({ applicationIds, createNewApplication, applications, toggleApplica
         <div className="app-menu">
             <div className="tabs">
                 {applicationIds.map(applicationId => (
-                    <div key={applicationId} className="tab-item">
-                        <button onClick={() => toggleApplicationState(applicationId)}>{applications[applicationId].name}</button>
+                    <div key={applicationId} className={applications[applicationId].isActive ? 'tab-item active' : 'tab-item'}>
+                        <span onClick={() => toggleApplicationState(applicationId)}>{applications[applicationId].name}</span>
                         <button onClick={() => deleteApplication(applicationId)}>X</button>
                     </div>
                 ))}
@@ -24,15 +25,15 @@ const App = ({ applicationIds, createNewApplication, applications, toggleApplica
         <div className="editor">
             {applicationIds.map(applicationId => (
                 <div key={applicationId}>
-                  {applications[applicationId].isActive ? <Editor applicationId={applicationId} /> : null}
+                    {applications[applicationId].isActive ? <Editor applicationId={applicationId} /> : null}
                 </div>
             ))}
         </div>
         <div className="preview">
             {applicationIds.map(applicationId => (
-                    <div key={applicationId} className={!applications[applicationId].isActive ? 'hidden' : ''}>
-                        <PreviewContainer application={applicationId} />
-                    </div>
+                <div key={applicationId} className={!applications[applicationId].isActive ? 'hidden' : ''}>
+                    <PreviewContainer application={applicationId} />
+                </div>
             ))}
         </div>
     </div>
@@ -43,11 +44,10 @@ const mapStateToProps = (state) => ({
     applications: state.byIds
 })
 
-const mapDispatchToProps = {
-    createNewApplication,
-    toggleApplicationState,
-    deleteApplication
-}
+const mapDispatchToProps =(dispatch)=>( {
+    ...bindActionCreators(actions, dispatch)
+})
+
 
 export default connect(
     mapStateToProps,

@@ -3,7 +3,7 @@
         "id": 1,
         "name": "VDT Analysis App -1",
         "data": null,
-        "isActive": false,
+        "isActive": true,
         "theme": {
             "chart": {
                 "type": "line"
