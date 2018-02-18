@@ -1,20 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Editor from '../components/Editor'
-import {createNewAnalysisApplication,toggleTabState} from '../actions'
+import {createNewApplication,toggleApplicationState,deleteApplication} from '../actions'
+import PreviewContainer from './PreviewContainer'
+import Editor from './Editor'
 
-const App = ({applicationIds,createNewAnalysisApplication,applications,toggleTabState}) => (
+
+const App = ({applicationIds,createNewApplication,applications,toggleApplicationState,deleteApplication}) => (
   <div>
     <h2>VDT Cloud</h2>
-    <button onClick={()=> createNewAnalysisApplication()}>Create a New VDT application</button>
+    <button onClick={()=> createNewApplication()}>Create a New VDT application</button>
     <hr/>
     {applicationIds.map(applicationId=>(
-        <button key={applicationId} onClick={()=> toggleTabState(applicationId)}>{applicationId}</button>
+        <ul className="tabs">
+        <li key={applicationId}>
+         <button  onClick={()=> toggleApplicationState(applicationId)}>{applications[applicationId].name}</button>
+         <button  onClick={()=> deleteApplication(applicationId)}>X</button>
+        </li>
+        </ul>
     ))}
     {applicationIds.map(applicationId=>(
-         <div key={applicationId} className={!applications[applicationId].isActive ? 'hidden' : ''}>
-             <Editor applicationId={applicationId}/> 
+        <div key={applicationId} className="app-container">
+         {applications[applicationId].isActive?<Editor applicationId={applicationId}/>:null }
+         <div className={!applications[applicationId].isActive ? 'hidden' : ''}>
+             <PreviewContainer application={applicationId} />
          </div>
+        </div>
     ))}
   </div>
 )
@@ -25,8 +35,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    createNewAnalysisApplication,
-    toggleTabState
+    createNewApplication,
+    toggleApplicationState,
+    deleteApplication
 }
   
 export default connect(

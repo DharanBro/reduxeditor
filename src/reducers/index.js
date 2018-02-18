@@ -5,19 +5,37 @@ const initialState = {
         id: 1,
         name: 'VDT Analysis App -1',
         data: null,
-        isActive: false
+        isActive: false,
+        theme: {
+            chart: {
+                type: "line"
+            }
+        },
+        isFetching:false
     },
     "2": {
         id: 2,
         name: 'VDT Analysis App -2',
         data: null,
-        isActive: false
+        isActive: false,
+        theme: {
+            chart: {
+                type: "line"
+            }
+        },
+        isFetching:false
     },
     "3": {
         id: 3,
         name: 'VDT Analysis App -3',
         data: null,
-        isActive: false
+        isActive: false,
+        theme: {
+            chart: {
+                type: "line"
+            }
+        },
+        isFetching:false
     }
 };
 
@@ -27,6 +45,16 @@ const visibleIds = (state = [1, 2, 3], action) => {
             return [...state, action.id]
         default:
             return state;
+    }
+}
+
+const updateChartType =(theme, type) =>{
+    return {
+        ...theme,
+        chart : {
+            
+            type
+        }
     }
 }
 
@@ -46,17 +74,33 @@ const byIds = (state = initialState, action) => {
             if (id) {
                 return {
                     ...state,
-                    [id]: { ...state[id], data: action.spreadsheetID }
+                    [id]: { ...state[id], data: action.data }
                 }
             }
             return state;
         case 'TOGGLE_APP_STATE':
-        if (id) {
-            return {
-                ...state,
-                [id]: { ...state[id], isActive: !state[id].isActive }
+            if (id) {
+                return {
+                    ...state,
+                    [id]: { ...state[id], isActive: !state[id].isActive }
+                }
             }
-        }
+            return state;
+        case 'REQUEST_DATA':
+            if (id) {
+                return {
+                    ...state,
+                    [id]: { ...state[id], isFetching: !state[id].isFetching }
+                }
+            }
+            return state;
+        case 'REQUEST_DATA_COMPLETE':
+            if (id) {
+                return {
+                    ...state,
+                    [id]: { ...state[id], isFetching: !state[id].isFetching }
+                }
+            }
             return state;
         case 'CREATE_NEW_APP':
             return {
@@ -67,6 +111,14 @@ const byIds = (state = initialState, action) => {
                     data: null
                 }
             }
+        case 'CHANGE_CHART_TYPE':
+            if (id) {
+                return {
+                    ...state,
+                    [id]: { ...state[id], theme: updateChartType(state[id].theme,action.chartType) }
+                }
+            }
+            return state;
         default:
             return state;
     }

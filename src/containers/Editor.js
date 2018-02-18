@@ -1,19 +1,16 @@
 import React from 'react'
-import PreviewContainer from './PreviewContainer'
+
 import Toolbar from './Toolbar'
 import { connect } from 'react-redux'
-import { changeAppName } from '../actions';
+import { changeApplicationName } from '../actions';
 
 
-const Editor = ({ application, changeAppName }) => (
+const Editor = ({ application, changeApplicationName }) => (
     <div className="editor">
-        <h2 className="editor-title">Editor {application.name}  <button onClick={() => changeAppName(application.id, 'Nice')}>Hello</button></h2>
+        <h2 className="editor-title">Editor {application.name}  <button onClick={() => changeApplicationName(application.id, Date.now())}>Change the Application Name</button></h2>
         <nav>
             <Toolbar application={application.id} />
         </nav>
-        
-        <PreviewContainer application={application.id} />
-       
     </div>
 )
 
@@ -23,7 +20,7 @@ const mapStateToProps = (state, ownProps) => (
     })
 
 const mapDispatchToProps = {
-    changeAppName
+    changeApplicationName
 }
 
 

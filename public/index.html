@@ -1,28 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Redux VDT Cloud</title>
-  </head>
-  <style type="text/css">
-    .editor{
-      display: grid;
-      grid-template-columns: 100px auto 50px 40px;
-      grid-template-rows: auto;
-      grid-template-areas: "header header header header header"
-    }
-    .editor-title{
-      grid-area: header;
-    }
-    .hidden{
-      display: none;
-    }
-  </style>
 
-  <body>
-    <div class="vdt-cloud" id="root"></div>
-    <!--
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redux VDT Cloud</title>
+</head>
+<style type="text/css">
+  .editor {
+    display: grid;
+    grid-template-columns: 100px auto 50px 40px;
+    grid-template-rows: auto;
+    grid-template-areas: "header header header header header"
+  }
+
+  .editor-title {
+    grid-area: header;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .tabs {
+    list-style: none;
+  }
+
+  .tabs li {
+    display: inline;
+  }
+
+  .tabs li button {
+    float: left;
+    display: block;
+    padding: 4px 10px;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+
+  .tabs li button:hover {
+    background: #ccc;
+  }
+</style>
+
+<body>
+  <div class="vdt-cloud" id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -32,5 +58,6 @@
       To begin the development, run `npm start` in this folder.
       To create a production bundle, use `npm run build`.
     -->
-  </body>
+</body>
+
 </html>
