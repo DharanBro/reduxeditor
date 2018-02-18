@@ -20,7 +20,6 @@ const fetchDataFromApi = (id, data) =>(
     }
 )
 
-
 export const fetchDataFromGoogle = (id, spreadsheetID) => dispatch => {
     dispatch(fetchingData(id))
     mock.getChartData(data => {

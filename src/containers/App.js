@@ -10,14 +10,14 @@ const App = ({applicationIds,createNewApplication,applications,toggleApplication
     <h2>VDT Cloud</h2>
     <button onClick={()=> createNewApplication()}>Create a New VDT application</button>
     <hr/>
+    <ul className="tabs">
     {applicationIds.map(applicationId=>(
-        <ul className="tabs">
         <li key={applicationId}>
          <button  onClick={()=> toggleApplicationState(applicationId)}>{applications[applicationId].name}</button>
          <button  onClick={()=> deleteApplication(applicationId)}>X</button>
         </li>
-        </ul>
     ))}
+    </ul>
     {applicationIds.map(applicationId=>(
         <div key={applicationId} className="app-container">
          {applications[applicationId].isActive?<Editor applicationId={applicationId}/>:null }

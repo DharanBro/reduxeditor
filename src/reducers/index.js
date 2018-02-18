@@ -1,43 +1,5 @@
 import { combineReducers } from 'redux'
-
-const initialState = {
-    "1": {
-        id: 1,
-        name: 'VDT Analysis App -1',
-        data: null,
-        isActive: false,
-        theme: {
-            chart: {
-                type: "line"
-            }
-        },
-        isFetching:false
-    },
-    "2": {
-        id: 2,
-        name: 'VDT Analysis App -2',
-        data: null,
-        isActive: false,
-        theme: {
-            chart: {
-                type: "line"
-            }
-        },
-        isFetching:false
-    },
-    "3": {
-        id: 3,
-        name: 'VDT Analysis App -3',
-        data: null,
-        isActive: false,
-        theme: {
-            chart: {
-                type: "line"
-            }
-        },
-        isFetching:false
-    }
-};
+import initialState from '../api/initialapp-data.json'
 
 const visibleIds = (state = [1, 2, 3], action) => {
     switch (action.type) {
@@ -48,16 +10,14 @@ const visibleIds = (state = [1, 2, 3], action) => {
     }
 }
 
-const updateChartType =(theme, type) =>{
+const updateChartType = (theme, type) => {
     return {
         ...theme,
-        chart : {
-            
+        chart: {
             type
         }
     }
 }
-
 
 const byIds = (state = initialState, action) => {
     const { id } = action;
@@ -115,7 +75,7 @@ const byIds = (state = initialState, action) => {
             if (id) {
                 return {
                     ...state,
-                    [id]: { ...state[id], theme: updateChartType(state[id].theme,action.chartType) }
+                    [id]: { ...state[id], theme: updateChartType(state[id].theme, action.chartType) }
                 }
             }
             return state;

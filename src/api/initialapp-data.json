@@ -1,0 +1,38 @@
+{
+    "1": {
+        "id": 1,
+        "name": "VDT Analysis App -1",
+        "data": null,
+        "isActive": false,
+        "theme": {
+            "chart": {
+                "type": "line"
+            }
+        },
+        "isFetching":false
+    },
+    "2": {
+        "id": 2,
+        "name": "VDT Analysis App -2",
+        "data": null,
+        "isActive": false,
+        "theme": {
+            "chart": {
+                "type": "line"
+            }
+        },
+        "isFetching":false
+    },
+    "3": {
+        "id": 3,
+        "name": "VDT Analysis App -3",
+        "data": null,
+        "isActive": false,
+        "theme": {
+            "chart": {
+                "type": "line"
+            }
+        },
+        "isFetching":false
+    }
+}

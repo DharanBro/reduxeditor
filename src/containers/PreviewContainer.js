@@ -4,9 +4,15 @@ import ReactHighcharts from 'react-highcharts'
 
 const PreviewContainer = ({data,theme,applicationId,isFetching}) => (
   <div>
-    {data && !isFetching?<ReactHighcharts config={data}/>:isFetching?'Fetching... Please wait..':'There is no data yet'}
+    {data && !isFetching?<ReactHighcharts config={updateTheme(data,theme)}/>:isFetching?'Fetching... Please wait..':'There is no data yet'}
   </div>
 )
+
+const updateTheme=(data,theme)=>{
+  return {
+     ...data,chart:theme["chart"]
+   }
+}
 
 const mapStateToProps = (state, ownProps) => (
   {
