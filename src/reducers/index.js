@@ -1,10 +1,20 @@
 import { combineReducers } from 'redux'
 import initialState from '../api/initialapp-data.json'
 
-const visibleIds = (state = [1, 2, 3], action) => {
+export const getVisibleApps = (state) => {
+    return Object.keys(state);
+}
+
+const visibleIds = (state = getVisibleApps(initialState), action) => {
     switch (action.type) {
         case 'CREATE_NEW_APP':
             return [...state, action.id]
+        case 'DELETE_APP':
+            let index = state.indexOf(action.id)
+            return [
+                ...state.slice(0, index),
+                ...state.slice(index+ 1)
+            ]
         default:
             return state;
     }
@@ -38,9 +48,16 @@ const byIds = (state = initialState, action) => {
                 }
             }
             return state;
+        case 'DELETE_APP':
+            if (id) {
+                let updatedState = Object.assign({}, state);
+                delete updatedState[id];
+                return updatedState;
+            }
+            return state;
         case 'TOGGLE_APP_STATE':
-            let updatedState = Object.assign({},state);
-            Object.keys(updatedState).forEach(key=>{
+            let updatedState = Object.assign({}, state);
+            Object.keys(updatedState).forEach(key => {
                 updatedState[key].isActive = false
             });
             if (id) {

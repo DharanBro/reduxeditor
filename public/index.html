@@ -7,15 +7,25 @@
   <title>Redux VDT Cloud</title>
 </head>
 <style type="text/css">
-  .editor {
+  .editor-container {
     display: grid;
-    grid-template-columns: 100px auto 50px 40px;
-    grid-template-rows: auto;
-    grid-template-areas: "header header header header header"
+    grid-template-columns: 50px auto 800px;
+    grid-template-rows: 100px 50px auto;
+    grid-template-areas: "header header header" "app-menu app-menu app-menu" "editor editor preview" 
   }
 
-  .editor-title {
+  
+
+  .header {
     grid-area: header;
+  }
+
+  .app-menu {
+    grid-area: app-menu;
+  }
+
+  .editor {
+    grid-area: editor;
   }
 
   .hidden {
@@ -23,26 +33,16 @@
   }
 
   .tabs {
-    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 0.15fr);
   }
 
-  .tabs li {
-    display: inline;
-  }
-
-  .tabs li button {
-    float: left;
-    display: block;
-    padding: 4px 10px;
-    margin-left: -1px;
-    position: relative;
-    left: 1px;
-    text-decoration: none;
-    margin-right: 5px;
-  }
-
-  .tabs li button:hover {
-    background: #ccc;
+  .tab-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    padding: 6px;
   }
 </style>
 

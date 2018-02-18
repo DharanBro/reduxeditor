@@ -1,6 +1,7 @@
-
+import {getVisibleApps} from '../reducers'
+import initialState from '../api/initialapp-data.json'
 export {fetchDataFromGoogle} from './data'
-let appId = 4; // Hardcoded for now..
+let appId = getVisibleApps(initialState).length+1; // Hardcoded for now..
 
 export const changeApplicationName = (id,text) => ({
     type: 'CHANGE_APP_NAME',
