@@ -1,20 +1,21 @@
 import mock from '../api/mock'
+import * as types from '../constants/ActionTypes'
 //Begin Request
 const fetchingData = (id) => ({
-    type: 'REQUEST_DATA',
+    type: types.REQUEST_DATA,
     id
 })
 
 //Complete Request
 const fetchingDataSuccess = (id) => ({
-    type: 'REQUEST_DATA_COMPLETE',
+    type: types.REQUEST_DATA_COMPLETE,
     id
 })
 
 //Payload Data
 const fetchDataFromApi = (id, data) =>(
     {
-        type: 'FETCH_DATA_FROM_API',
+        type: types.FETCH_DATA_FROM_API,
         id,
         data
     }

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import initialState from '../api/initialapp-data.json'
+import * as types from '../constants/ActionTypes'
 
 export const getVisibleApps = (state) => {
     return Object.keys(state);
@@ -7,9 +8,9 @@ export const getVisibleApps = (state) => {
 
 const visibleIds = (state = getVisibleApps(initialState), action) => {
     switch (action.type) {
-        case 'CREATE_NEW_APP':
+        case types.CREATE_NEW_APP:
             return [...state, action.id]
-        case 'DELETE_APP':
+        case types.DELETE_APP:
             let index = state.indexOf(`${action.id}`) // Hacky to convert as a string
             return [
                 ...state.slice(0, index),
@@ -32,7 +33,7 @@ const updateChartType = (theme, type) => {
 const byIds = (state = initialState, action) => {
     const { id } = action;
     switch (action.type) {
-        case 'CHANGE_APP_NAME':
+        case types.CHANGE_APP_NAME:
             if (id) {
                 return {
                     ...state,
@@ -40,7 +41,7 @@ const byIds = (state = initialState, action) => {
                 }
             }
             return state;
-        case 'FETCH_DATA_FROM_API':
+        case types.FETCH_DATA_FROM_API:
             if (id) {
                 return {
                     ...state,
@@ -48,14 +49,14 @@ const byIds = (state = initialState, action) => {
                 }
             }
             return state;
-        case 'DELETE_APP':
+        case types.DELETE_APP:
             if (id) {
                 let updatedState = Object.assign({}, state);
                 delete updatedState[id];
                 return updatedState;
             }
             return state;
-        case 'TOGGLE_APP_STATE':
+        case types.TOGGLE_APP_STATE:
             let updatedState = Object.assign({}, state);
             Object.keys(updatedState).forEach(key => {
                 updatedState[key].isActive = false
@@ -67,7 +68,7 @@ const byIds = (state = initialState, action) => {
                 }
             }
             return state;
-        case 'REQUEST_DATA':
+        case types.REQUEST_DATA:
             if (id) {
                 return {
                     ...state,
@@ -75,7 +76,7 @@ const byIds = (state = initialState, action) => {
                 }
             }
             return state;
-        case 'REQUEST_DATA_COMPLETE':
+        case types.REQUEST_DATA_COMPLETE:
             if (id) {
                 return {
                     ...state,
@@ -83,7 +84,7 @@ const byIds = (state = initialState, action) => {
                 }
             }
             return state;
-        case 'CREATE_NEW_APP':
+        case types.CREATE_NEW_APP:
             return {
                 ...state,
                 [id]: {
@@ -92,7 +93,7 @@ const byIds = (state = initialState, action) => {
                     data: null
                 }
             }
-        case 'CHANGE_CHART_TYPE':
+        case types.CHANGE_CHART_TYPE:
             if (id) {
                 return {
                     ...state,
