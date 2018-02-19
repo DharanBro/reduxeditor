@@ -8,7 +8,7 @@ const Toolbar = ({applicationId,fetchDataFromGoogle,changeChartType,theme}) => (
   <div>
 
     <button onClick={() => fetchDataFromGoogle(applicationId, `${spreadSheetId}${applicationId}`)}>Fetch Data</button>
-    <select value={theme.chart.type} onChange={(event) => changeChartType(applicationId, event.target.value)}>
+    <select value={theme?theme.chart.type:''} onChange={(event) => changeChartType(applicationId, event.target.value)}>
       <option value="line">Line Chart</option>
       <option value="area">Area Chart</option>
       <option value="spline">Spline</option>
